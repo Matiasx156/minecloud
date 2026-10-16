@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MineCloud</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101713;color:#f2fff5;font-family:Arial,sans-serif}
+header{padding:22px;background:#17231b;border-bottom:1px solid #304237}
+.logo{color:#35d879;font-size:28px;font-weight:bold}
+main{max-width:850px;margin:auto;padding:20px}
+.hero,.card,.stat{background:#17231b;border:1px solid #304237;border-radius:16px;padding:20px;margin-bottom:16px}
+h1{font-size:34px;margin:15px 0}
+h2{font-size:21px}
+p,.muted{color:#a5b8aa;line-height:1.5}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat strong{display:block;font-size:23px;margin-top:8px}
+button,select,input{width:100%;padding:13px;margin-top:9px;border-radius:10px;font-size:16px}
+button{background:#35d879;color:#102318;border:0;font-weight:bold}
+input,select{background:#101713;color:white;border:1px solid #304237}
+.notice{font-size:13px;color:#f2d58a}
+footer{padding:20px;color:#a5b8aa;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">☁ MineCloud</div>
+<div class="muted">HOSTING PARA MINECRAFT BEDROCK</div>
+</header>
+<main>
+<section class="hero">
+<p style="color:#35d879">TU MUNDO. TUS REGLAS.</p>
+<h1>Tu servidor,<br>tu aventura.</h1>
+<p>Preparate para crear tu mundo de Minecraft Bedrock con MineCloud.</p>
+</section>
+
+<h2>Panel de tu servidor</h2>
+<div class="grid">
+<div class="stat"><span class="muted">Estado</span><strong id="status">Apagado</strong></div>
+<div class="stat"><span class="muted">Edición</span><strong>Bedrock</strong></div>
+<div class="stat"><span class="muted">Jugadores</span><strong>0 / 10</strong></div>
+<div class="stat"><span class="muted">Memoria</span><strong>Por configurar</strong></div>
+</div>
+
+<section class="card">
+<h2>Mi servidor</h2>
+<label for="world">Nombre del mundo</label>
+<input id="world" value="Mi mundo">
+<label for="mode">Modo de juego</label>
+<select id="mode">
+<option>Supervivencia</option>
+<option>Creativo</option>
+<option>Aventura</option>
+</select>
+<label for="difficulty">Dificultad</label>
+<select id="difficulty">
+<option>Normal</option>
+<option>Fácil</option>
+<option>Pacífico</option>
+<option>Difícil</option>
+</select>
+<button onclick="saveSettings()">Guardar configuración</button>
+<p id="saved" class="muted"></p>
+<p class="notice">Demostración: todavía no inicia un servidor real ni genera una IP para Minecraft.</p>
+</section>
+<footer>MineCloud · Proyecto independiente en desarrollo. No afiliado a Mojang ni Microsoft.</footer>
+</main>
+<script>
+function saveSettings(){
+ const world=document.getElementById('world').value.trim()||'Mi mundo';
+ document.getElementById('saved').textContent='Configuración de muestra guardada para: '+world+'. Modo: '+document.getElementById('mode').value+'. Dificultad: '+document.getElementById('difficulty').value+'.';
+}
+</script>
+</body>
+</html>
+

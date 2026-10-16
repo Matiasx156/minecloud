@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101713">
 <title>MineCloud</title>
 <style>
 *{box-sizing:border-box}
@@ -18,61 +18,66 @@ p,.muted{color:#a5b8aa;line-height:1.5}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .stat strong{display:block;font-size:23px;margin-top:8px}
 button,select,input{width:100%;padding:13px;margin-top:9px;border-radius:10px;font-size:16px}
-button{background:#35d879;color:#102318;border:0;font-weight:bold}
+button{background:#35d879;color:#102318;border:0;font-weight:bold;cursor:pointer}
 input,select{background:#101713;color:white;border:1px solid #304237}
 .notice{font-size:13px;color:#f2d58a}
 footer{padding:20px;color:#a5b8aa;font-size:13px}
+@media(max-width:480px){main{padding:14px}.hero,.card,.stat{padding:16px}h1{font-size:30px}}
 </style>
 </head>
 <body>
 <header>
-<div class="logo">☁ MineCloud</div>
-<div class="muted">HOSTING PARA MINECRAFT BEDROCK</div>
+  <div class="logo">☁ MineCloud</div>
+  <div class="muted">HOSTING PARA MINECRAFT BEDROCK</div>
 </header>
 <main>
-<section class="hero">
-<p style="color:#35d879">TU MUNDO. TUS REGLAS.</p>
-<h1>Tu servidor,<br>tu aventura.</h1>
-<p>Preparate para crear tu mundo de Minecraft Bedrock con MineCloud.</p>
-</section>
+  <section class="hero">
+    <p style="color:#35d879">TU MUNDO. TUS REGLAS.</p>
+    <h1>Tu servidor,<br>tu aventura.</h1>
+    <p>Preparáte para crear tu mundo de Minecraft Bedrock con MineCloud.</p>
+  </section>
 
-<h2>Panel de tu servidor</h2>
-<div class="grid">
-<div class="stat"><span class="muted">Estado</span><strong id="status">Apagado</strong></div>
-<div class="stat"><span class="muted">Edición</span><strong>Bedrock</strong></div>
-<div class="stat"><span class="muted">Jugadores</span><strong>0 / 10</strong></div>
-<div class="stat"><span class="muted">Memoria</span><strong>Por configurar</strong></div>
-</div>
+  <h2>Panel de tu servidor</h2>
+  <div class="grid">
+    <div class="stat"><span class="muted">Estado</span><strong id="status">Panel de demostración</strong></div>
+    <div class="stat"><span class="muted">Edición</span><strong>Bedrock</strong></div>
+    <div class="stat"><span class="muted">Jugadores</span><strong id="players">No conectado</strong></div>
+    <div class="stat"><span class="muted">Memoria</span><strong id="memory">Por configurar</strong></div>
+  </div>
 
-<section class="card">
-<h2>Mi servidor</h2>
-<label for="world">Nombre del mundo</label>
-<input id="world" value="Mi mundo">
-<label for="mode">Modo de juego</label>
-<select id="mode">
-<option>Supervivencia</option>
-<option>Creativo</option>
-<option>Aventura</option>
-</select>
-<label for="difficulty">Dificultad</label>
-<select id="difficulty">
-<option>Normal</option>
-<option>Fácil</option>
-<option>Pacífico</option>
-<option>Difícil</option>
-</select>
-<button onclick="saveSettings()">Guardar configuración</button>
-<p id="saved" class="muted"></p>
-<p class="notice">Demostración: todavía no inicia un servidor real ni genera una IP para Minecraft.</p>
-</section>
-<footer>MineCloud · Proyecto independiente en desarrollo. No afiliado a Mojang ni Microsoft.</footer>
+  <section class="card">
+    <h2>Mi servidor</h2>
+    <label for="world">Nombre del mundo</label>
+    <input id="world" value="Mi mundo" maxlength="32">
+    <label for="mode">Modo de juego</label>
+    <select id="mode">
+      <option>Supervivencia</option>
+      <option>Creativo</option>
+      <option>Aventura</option>
+    </select>
+    <label for="difficulty">Dificultad</label>
+    <select id="difficulty">
+      <option>Normal</option>
+      <option>Fácil</option>
+      <option>Pacífico</option>
+      <option>Difícil</option>
+    </select>
+    <button type="button" onclick="saveSettings()">Guardar configuración</button>
+    <p id="saved" class="muted" role="status" aria-live="polite"></p>
+    <p class="notice">Esta es una maqueta: guardar muestra la configuración en esta página, pero todavía no inicia un servidor real ni genera una IP de Minecraft.</p>
+  </section>
+  <footer>MineCloud · Proyecto independiente en desarrollo. No afiliado a Mojang ni Microsoft.</footer>
 </main>
 <script>
 function saveSettings(){
- const world=document.getElementById('world').value.trim()||'Mi mundo';
- document.getElementById('saved').textContent='Configuración de muestra guardada para: '+world+'. Modo: '+document.getElementById('mode').value+'. Dificultad: '+document.getElementById('difficulty').value+'.';
+  const worldInput = document.getElementById('world');
+  const world = worldInput.value.trim() || 'Mi mundo';
+  worldInput.value = world;
+  document.getElementById('saved').textContent =
+    'Configuración de muestra guardada para: ' + world +
+    '. Modo: ' + document.getElementById('mode').value +
+    '. Dificultad: ' + document.getElementById('difficulty').value + '.';
 }
 </script>
 </body>
 </html>
-
